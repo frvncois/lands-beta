@@ -8,6 +8,7 @@ export const useEditorStore = defineStore('editor', () => {
   const isDirty = ref(false)
   const isDragging = ref(false)
   const leftPanelTab = ref<'sections' | 'theme' | 'settings'>('sections')
+  const panelPos = ref({ x: 16, y: 72 })
 
   function enterEditMode() {
     isEditMode.value = true
@@ -39,6 +40,10 @@ export const useEditorStore = defineStore('editor', () => {
     isDragging.value = dragging
   }
 
+  function setPanelPos(pos: { x: number; y: number }) {
+    panelPos.value = pos
+  }
+
   return {
     isEditMode,
     activeSection,
@@ -52,5 +57,7 @@ export const useEditorStore = defineStore('editor', () => {
     markDirty,
     markClean,
     setDragging,
+    panelPos,
+    setPanelPos,
   }
 })

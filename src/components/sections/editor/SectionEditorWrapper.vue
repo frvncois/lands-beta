@@ -37,7 +37,7 @@ const showSettings = ref(false)
     <!-- Floating toolbar — visible on hover or when active -->
     <div
       :class="[
-        'absolute top-2 right-4 flex items-center gap-1 bg-white border border-gray-200 rounded-full shadow-md px-2 py-1 z-10 transition-opacity duration-fast',
+        'absolute top-2 left-4 flex items-center gap-1 bg-white border border-gray-200 rounded-full shadow-md px-2 py-1 z-10 transition-opacity duration-fast',
         isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100',
       ]"
     >

@@ -6,7 +6,7 @@ import BaseDragHandle from '@/components/ui/BaseDragHandle.vue'
 import BaseButton from '@/components/ui/BaseButton.vue'
 import AddSectionModal from '@/components/modals/AddSectionModal.vue'
 import EditListItemModal from '@/components/modals/EditListItemModal.vue'
-import SectionSettingsModal from '@/components/modals/SectionSettingsModal.vue'
+import SectionSettingsPanel from '@/components/editor/SectionSettingsPanel.vue'
 import ConfirmDialog from '@/components/shared/ConfirmDialog.vue'
 import { useLandStore } from '@/stores/land'
 import { useEditorStore } from '@/stores/editor'
@@ -243,7 +243,7 @@ function selectSection(section: Section) {
 
   <AddSectionModal v-model="showAddModal" @add="handleAdd" />
 
-  <SectionSettingsModal
+  <SectionSettingsPanel
     v-if="settingsSection"
     v-model="showSectionSettings"
     :section="settingsSection"

@@ -25,10 +25,10 @@ const integrations = ref([
 
 <template>
   <Teleport to="body">
-    <Transition name="slide-right">
+    <Transition name="slide-left">
       <div
         v-if="modelValue"
-        class="fixed left-4 z-20 w-72 flex flex-col bg-white rounded-lg shadow-md border border-gray-100"
+        class="fixed right-4 z-20 w-72 flex flex-col bg-white rounded-lg shadow-md border border-gray-100"
         style="top: 72px"
       >
         <!-- Header -->

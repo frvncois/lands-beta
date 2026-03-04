@@ -46,7 +46,7 @@ onUnmounted(() => document.removeEventListener('click', onClickOutside))
     <Transition name="scale">
       <div
         v-if="modelValue"
-        :class="['absolute min-w-[180px] bg-white border border-gray-100 rounded-md shadow-lg p-2 z-dropdown', panelClass]"
+        :class="['absolute min-w-[250px] bg-white border border-gray-100 rounded-md shadow-lg p-2 z-dropdown', panelClass]"
       >
         <slot name="content" />
       </div>

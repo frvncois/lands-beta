@@ -42,7 +42,7 @@ function handleDeleteAccount() {
 
 <template>
   <div class="max-w-xl m-auto overflow-y-auto h-full">
-    <h1 class="text-xl font-bold text-gray-900 mb-6">Settings</h1>
+    <h1 class="text-xl font-bold text-gray-900 mb-6">Account</h1>
 
     <!-- Avatar section -->
     <div class="flex items-center gap-4 mb-8">

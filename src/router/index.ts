@@ -59,9 +59,9 @@ const router = createRouter({
           component: () => import('../views/dashboard/DashboardWatchlist.vue'),
         },
         {
-          path: 'settings',
-          name: 'dashboard-settings',
-          component: () => import('../views/dashboard/DashboardSettings.vue'),
+          path: 'account',
+          name: 'dashboard-account',
+          component: () => import('../views/dashboard/DashboardAccount.vue'),
         },
       ],
     },

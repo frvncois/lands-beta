@@ -162,15 +162,6 @@ function saveAvatarUrl() {
 
       <p v-if="land?.description" class="text-base text-gray-600 mt-3">{{ land.description }}</p>
 
-      <!-- Layout settings shortcut (active only) -->
-      <button
-        v-if="isActive"
-        class="flex items-center gap-1 mt-4 text-xs text-gray-400 hover:text-gray-700 transition-colors duration-fast"
-        @click.stop="settingsOpen = true"
-      >
-        <Cog6ToothIcon class="h-3.5 w-3.5" />
-        Layout settings
-      </button>
     </div>
   </SectionEditorWrapper>
 

@@ -1,30 +1,25 @@
 <script setup lang="ts">
-import { ref, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import {
   Bars3BottomLeftIcon,
   SwatchIcon,
-  Cog6ToothIcon,
-  ChevronUpIcon,
-  ChevronDownIcon,
 } from '@heroicons/vue/24/outline'
 import { useEditorStore } from '@/stores/editor'
 import EditorPanelSections from '@/components/editor/EditorPanelSections.vue'
 import EditorPanelTheme from '@/components/editor/EditorPanelTheme.vue'
-import EditorPanelSettings from '@/components/editor/EditorPanelSettings.vue'
 
 const editorStore = useEditorStore()
 
 const tabs = [
   { id: 'sections' as const, label: 'Content', icon: Bars3BottomLeftIcon },
   { id: 'theme' as const, label: 'Theme', icon: SwatchIcon },
-  { id: 'settings' as const, label: 'Settings', icon: Cog6ToothIcon },
 ]
 
-const minimized = ref(false)
 
 // --- Drag logic ---
-// x: 16px from left edge. y: header (h-14 = 56px) + 16px gap = 72px
-const pos = ref({ x: 16, y: 72 })
+// x: 16px from right edge. y: header (h-14 = 56px) + 16px gap = 72px
+const initialX = window.innerWidth - 288 - 16
+const pos = ref({ x: initialX, y: 72 })
 const dragging = ref(false)
 const dragOffset = ref({ x: 0, y: 0 })
 
@@ -40,6 +35,7 @@ function onDragMove(e: MouseEvent) {
     x: e.clientX - dragOffset.value.x,
     y: e.clientY - dragOffset.value.y,
   }
+  editorStore.setPanelPos(pos.value)
 }
 
 function onDragEnd() {
@@ -47,6 +43,10 @@ function onDragEnd() {
   document.removeEventListener('mousemove', onDragMove)
   document.removeEventListener('mouseup', onDragEnd)
 }
+
+onMounted(() => {
+  editorStore.setPanelPos(pos.value)
+})
 
 onUnmounted(() => {
   document.removeEventListener('mousemove', onDragMove)
@@ -88,20 +88,12 @@ onUnmounted(() => {
         <component :is="tab.icon" class="h-4 w-4" />
         {{ tab.label }}
       </button>
-      <button
-        class="px-3 text-gray-400 hover:text-gray-600 transition-colors duration-fast border-l border-gray-100"
-        @click="minimized = !minimized"
-      >
-        <ChevronUpIcon v-if="!minimized" class="h-3.5 w-3.5" />
-        <ChevronDownIcon v-else class="h-3.5 w-3.5" />
-      </button>
     </div>
 
     <!-- Tab content -->
-    <div v-if="!minimized" class="flex-1 min-h-0 overflow-y-auto p-4">
+    <div class="flex-1 min-h-0 overflow-y-auto p-4">
       <EditorPanelSections v-if="editorStore.leftPanelTab === 'sections'" />
       <EditorPanelTheme v-if="editorStore.leftPanelTab === 'theme'" />
-      <EditorPanelSettings v-if="editorStore.leftPanelTab === 'settings'" />
     </div>
   </div>
 
@@ -130,8 +122,7 @@ onUnmounted(() => {
       <div class="flex-1 overflow-y-auto p-4">
         <EditorPanelSections v-if="editorStore.leftPanelTab === 'sections'" />
         <EditorPanelTheme v-if="editorStore.leftPanelTab === 'theme'" />
-        <EditorPanelSettings v-if="editorStore.leftPanelTab === 'settings'" />
-      </div>
+        </div>
     </div>
   </Teleport>
 </template>

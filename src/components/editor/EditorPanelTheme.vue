@@ -6,10 +6,8 @@ import { useEditorActions } from '@/composables/useEditorActions'
 import ColorPicker from '@/components/theme/ColorPicker.vue'
 import {
   THEME_PRESETS,
-  COLOR_MODES,
   TYPOGRAPHY_STYLES,
   type ThemePreset,
-  type ColorMode,
   type TypographyStyle,
 } from '@/types/theme'
 import { THEME_PRESET_DEFINITIONS } from '@/lib/primitives/themePresets'
@@ -19,7 +17,7 @@ const { updateTheme } = useEditorActions()
 
 const theme = computed(() => landStore.activeLand?.theme || null)
 
-const open = ref({ preset: false, palette: false, mode: false, typography: false })
+const open = ref({ preset: false, palette: false, typography: false })
 
 function toggle(key: keyof typeof open.value) {
   open.value[key] = !open.value[key]
@@ -58,10 +56,6 @@ function onPickerColor(color: string) {
 function setPreset(preset: ThemePreset) {
   if (!theme.value) return
   updateTheme(THEME_PRESET_DEFINITIONS[preset].defaults)
-}
-
-function setColorMode(mode: ColorMode) {
-  updateTheme({ color_mode: mode })
 }
 
 function setTypography(style: TypographyStyle) {
@@ -131,34 +125,6 @@ function setTypography(style: TypographyStyle) {
             }"
             @click="openPicker(field, $event)"
           />
-        </div>
-      </div>
-    </div>
-
-    <!-- Mode -->
-    <div>
-      <button
-        class="flex items-center justify-between w-full py-3 text-sm font-semibold text-gray-900"
-        @click="toggle('mode')"
-      >
-        Mode
-        <ChevronDownIcon :class="['h-4 w-4 text-gray-400 transition-transform duration-fast', open.mode && 'rotate-180']" />
-      </button>
-      <div v-if="open.mode" class="pb-4">
-        <div class="flex rounded-full bg-gray-100 p-1">
-          <button
-            v-for="mode in Object.values(COLOR_MODES)"
-            :key="mode"
-            :class="[
-              'flex-1 py-1.5 text-sm font-medium rounded-full text-center transition-all duration-fast capitalize',
-              theme.color_mode === mode
-                ? 'bg-white text-gray-900 shadow-sm'
-                : 'text-gray-500 hover:text-gray-700',
-            ]"
-            @click="setColorMode(mode)"
-          >
-            {{ mode.charAt(0).toUpperCase() + mode.slice(1) }}
-          </button>
         </div>
       </div>
     </div>

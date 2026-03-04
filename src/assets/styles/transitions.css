@@ -76,6 +76,24 @@
   transform: translateX(-8px);
 }
 
+/* Slide from right (for right-anchored panels) */
+.slide-left-enter-active {
+  transition: opacity 200ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.slide-left-leave-active {
+  transition: opacity 150ms ease-in,
+              transform 150ms ease-in;
+}
+.slide-left-enter-from {
+  opacity: 0;
+  transform: translateX(16px);
+}
+.slide-left-leave-to {
+  opacity: 0;
+  transform: translateX(8px);
+}
+
 /* Drag-and-drop states (SortableJS / vuedraggable) */
 .drag-ghost {
   opacity: 0.3;
