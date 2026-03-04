@@ -1,0 +1,30 @@
+@import "tailwindcss";
+@import "./transitions.css";
+
+@config "../../../tailwind.config.ts";
+
+/* --- Satoshi font --- */
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap');
+
+/* --- Base resets beyond Tailwind's preflight --- */
+@layer base {
+  body {
+    @apply font-sans text-base text-gray-900 bg-white antialiased;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button {
+    font-family: inherit;
+    cursor: pointer;
+  }
+
+  img,
+  video {
+    display: block;
+    max-width: 100%;
+  }
+}

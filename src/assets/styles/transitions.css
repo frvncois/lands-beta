@@ -1,0 +1,114 @@
+/* --- Vue transition classes --- */
+
+/* Fade */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 200ms ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* Fade + slide up (for modals, dropdowns) */
+.slide-up-enter-active {
+  transition: opacity 200ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.slide-up-leave-active {
+  transition: opacity 150ms ease-in,
+              transform 150ms ease-in;
+}
+.slide-up-enter-from {
+  opacity: 0;
+  transform: translateY(8px);
+}
+.slide-up-leave-to {
+  opacity: 0;
+  transform: translateY(4px);
+}
+
+/* Fade + scale (for small popovers, dropdowns) */
+.scale-enter-active {
+  transition: opacity 150ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 150ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.scale-leave-active {
+  transition: opacity 100ms ease-in,
+              transform 100ms ease-in;
+}
+.scale-enter-from {
+  opacity: 0;
+  transform: scale(0.95);
+}
+.scale-leave-to {
+  opacity: 0;
+  transform: scale(0.97);
+}
+
+/* Slide from bottom (for mobile bottom sheets) */
+.slide-bottom-enter-active {
+  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.slide-bottom-leave-active {
+  transition: transform 200ms ease-in;
+}
+.slide-bottom-enter-from,
+.slide-bottom-leave-to {
+  transform: translateY(100%);
+}
+
+/* Slide from left (for editor left panel) */
+.slide-right-enter-active {
+  transition: opacity 200ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.slide-right-leave-active {
+  transition: opacity 150ms ease-in,
+              transform 150ms ease-in;
+}
+.slide-right-enter-from {
+  opacity: 0;
+  transform: translateX(-16px);
+}
+.slide-right-leave-to {
+  opacity: 0;
+  transform: translateX(-8px);
+}
+
+/* Drag-and-drop states (SortableJS / vuedraggable) */
+.drag-ghost {
+  opacity: 0.3;
+}
+.drag-chosen {
+  opacity: 1;
+}
+.drag-active * {
+  cursor: grabbing !important;
+}
+
+/* Expand (for inline "+" section inserter) */
+.expand-enter-active {
+  transition: opacity 200ms cubic-bezier(0.16, 1, 0.3, 1),
+              max-height 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+.expand-leave-active {
+  transition: opacity 150ms ease-in,
+              max-height 200ms ease-in;
+  overflow: hidden;
+}
+.expand-enter-from {
+  opacity: 0;
+  max-height: 0;
+}
+.expand-enter-to {
+  max-height: 300px;
+}
+.expand-leave-from {
+  max-height: 300px;
+}
+.expand-leave-to {
+  opacity: 0;
+  max-height: 0;
+}
